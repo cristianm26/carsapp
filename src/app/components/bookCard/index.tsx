@@ -84,9 +84,21 @@ import Marginer from '../marginer';
   const DateCalendar = styled(Calendar)`
     position: absolute;
     max-width: none;
+    user-select: none;
+    top: 2em;
+    left: 0;
+    
+    ${({ offset }: any) =>
+    offset  &&
+    css `
+      left: -6em;
+    `};
+
+    @media (min-width: ${SCREENS.md}) {
     top: 3.5em;
-    left: -2em; 
-  `;
+    left: -2em;
+  }
+  `as any;
   
 const BookCard = () => {
 
@@ -130,7 +142,7 @@ const BookCard = () => {
                 </SmallIcon>
                     {
                         isReturnCalendarOpen && (
-                            <DateCalendar value={returnDate} onChange={setReturnDate as any}  />
+                            <DateCalendar offset value={returnDate} onChange={setReturnDate as any}  /> 
                         )
                     }
                 </ItemContainer>
